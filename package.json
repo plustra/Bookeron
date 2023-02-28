@@ -21,5 +21,10 @@
     "bugs": {
         "url": "https://github.com/plustra/Bookeron/issues"
     },
-    "homepage": "https://github.com/plustra/Bookeron#readme"
+    "homepage": "https://github.com/plustra/Bookeron#readme",
+    "devDependencies": {
+        "eslint": "^8.35.0",
+        "eslint-config-airbnb-base": "^15.0.0",
+        "eslint-plugin-import": "^2.27.5"
+    }
 }
