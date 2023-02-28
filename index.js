@@ -1,11 +1,15 @@
 import dotenv from 'dotenv';
 import express from 'express';
 import fs from 'fs';
+import database from './database/database_connection';
 
 dotenv.config();
 
 const app = express();
 app.use(express.json());
+
+// Close DB connection
+app.on('close', () => database.end());
 
 // Load routers
 fs.readdirSync('./routers').forEach((file) => {
