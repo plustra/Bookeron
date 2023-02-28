@@ -1,0 +1,25 @@
+{
+    "name": "bookeron",
+    "version": "1.0.0",
+    "description": "Book lending administration server with Nodejs and Express",
+    "main": "index.js",
+    "type": "module",
+    "scripts": {
+        "test": "test"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/plustra/Bookeron.git"
+    },
+    "keywords": [
+        "Nodejs",
+        "Express",
+        "MySQL"
+    ],
+    "author": "Eissen Posso",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/plustra/Bookeron/issues"
+    },
+    "homepage": "https://github.com/plustra/Bookeron#readme"
+}
