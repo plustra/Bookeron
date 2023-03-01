@@ -14,8 +14,8 @@ app.on('close', () => {
 });
 
 // Load routers
-readdirSync('./routers').forEach((file) => {
-    const { default: router, path } = import(`./routers/${file}`);
+readdirSync('./routers').forEach(async (file) => {
+    const { default: router, path } = await import(`./routers/${file}`);
     app.use(path, router);
 });
 
