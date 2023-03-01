@@ -1,10 +1,28 @@
 # Bookeron
 
-Bookeron is a Node.js and Express server designed to manage book loans in a library. This project uses ESLint and Prettier for code formatting, Nodemon for the development environment, and MySQL as the database.
+Bookeron is a Node.js and Express server designed to manage book loans in a library.
 
 ## Prerequisites
 
 To run this server, you must have Node.js and MySQL installed on your local computer or server where the application will be hosted.
+
+## Dependencies
+
+-   [Express](https://expressjs.com/es/) A popular web framework for Node.js used to build web applications and APIs.
+
+-   [MySQL](https://expressjs.com/es/) A relational database management system that uses Structured Query Language (SQL) to manage data.
+
+-   [Dotenv](https://github.com/motdotla/dotenv) A zero-dependency module that loads environment variables from a .env file into process.env.
+
+-   [Http Status Codes](https://github.com/prettymuchbryce/http-status-codes) A collection of response status codes that can be used in HTTP responses.
+
+-   [ESlint](https://eslint.org/) A popular tool for identifying and reporting on patterns found in ECMAScript/JavaScript code.
+
+-   [Prettier](https://prettier.io/) An opinionated code formatter that can be used to automatically format code and enforce consistent style.
+
+-   [Nodemon](https://nodemon.io/) A utility that monitors changes to your Node.js application and automatically restarts the server.
+
+-   [JOI](https://joi.dev/api/?v=17.8.1) A library used for validating and sanitizing data in JavaScript. JOI provides a simple and expressive language for defining validation rules.
 
 ## Installation
 
