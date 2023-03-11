@@ -1,21 +1,8 @@
-import { querify } from '../database/database_connection.js';
-
-/**
- * Find users by params
- * @param {{}} params
- * @returns {Promise<user[]>} Finded users
- */
-async function find(params) {
-    const keys = Object.keys(params);
-    const values = params ? Object.values(params) : undefined;
-    const query = `SELECT * FROM user${params ? ` WHERE ${keys.map((key) => `${key} = ?`).join(' AND ')}` : ''}`;
-
-    const rows = await querify(query, values);
-    return rows;
-}
+import database from '../database/database_connection.js';
 
 /**
  * Create a new user
+ * @param {string} guid
  * @param {string} name
  * @param {string} email
  * @param {string} phone
@@ -23,17 +10,45 @@ async function find(params) {
  * @param {string} address
  * @returns {Promise<number>} New user's ID
  */
-async function create(name, email, phone, birthdate, address) {
-    const values = [name, email, phone, birthdate, address];
-    const query = 'INSERT INTO user (name, email, phone, birthdate, address) VALUES (?, ?, ?, ?, ?)';
+function create(guid, name, email, phone, birthdate, address) {
+    const values = [guid, name, email, phone, birthdate, address];
+    const query = 'INSERT INTO user (guid, name, email, phone, birthdate, address) VALUES (?, ?, ?, ?, ?, ?)';
 
-    const rows = await querify(query, values);
-    return rows.insertId;
+    return new Promise((resolve, reject) => {
+        database.query(query, values, (error, rows) => {
+            if (error) {
+                reject(error);
+            }
+
+            resolve(rows.insertId);
+        });
+    });
 }
 
 /**
- * Update user by ID
- * @param {number} id
+ * Get users by params
+ * @param {{}} params
+ * @returns {Promise<user[]>} Finded users
+ */
+function get(params) {
+    const keys = Object.keys(params);
+    const values = params ? Object.values(params) : undefined;
+    const query = `SELECT * FROM user ${params ? `WHERE ${keys.map((key) => `${key} = ?`).join(' AND ')}` : ''}`;
+
+    return new Promise((resolve, reject) => {
+        database.query(query, values, (error, rows) => {
+            if (error) {
+                reject(error);
+            }
+
+            resolve(rows.insertId);
+        });
+    });
+}
+
+/**
+ * Update user by GUID
+ * @param {string} guid
  * @param {string} name
  * @param {string} email
  * @param {string} phone
@@ -41,23 +56,42 @@ async function create(name, email, phone, birthdate, address) {
  * @param {string} address
  * @returns {Promise<void>}
  */
-async function update(id, name, email, phone, birthdate, address) {
-    const values = [name, email, phone, birthdate, address, id];
-    const query = 'UPDATE user SET name = ?, email = ?, phone = ?, birthdate = ?, address = ? WHERE id = ?';
+function update(guid, name, email, phone, birthdate, address) {
+    const values = [name, email, phone, birthdate, address, guid];
+    const query = 'UPDATE user SET name = ?, email = ?, phone = ?, birthdate = ?, address = ? WHERE guid = ?';
 
-    await querify(query, values);
+    return new Promise((resolve, reject) => {
+        database.query(query, values, (error) => {
+            if (error) {
+                reject(error);
+            }
+        });
+    });
 }
 
 /**
- * Remove user by ID
- * @param {number} id
+ * Remove user by GUID
+ * @param {string} guid
  * @returns {Promise<void>}
  */
-async function remove(id) {
-    const values = [id];
-    const query = 'DELETE FROM user WHERE id = ?';
+function remove(guid) {
+    const values = [guid];
+    const query = 'DELETE FROM user WHERE guid = ?';
 
-    await querify(query, values);
+    return new Promise((resolve, reject) => {
+        database.query(query, values, (error) => {
+            if (error) {
+                reject(error);
+            }
+        });
+    });
 }
 
-export default { find, create, update, remove };
+export default {
+    create,
+    get,
+    update,
+    remove,
+};
+
+create('Eissen Posso', 'eissenposso3@gmail.com', '3245818313', new Date('2004/10/06'), 'Rionegro');

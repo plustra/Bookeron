@@ -1,42 +1,46 @@
-CREATE DATABASE bookeron;
+CREATE DATABASE IF NOT EXISTS bookeron;
 USE bookeron;
 
-CREATE TABLE user (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(50) NOT NULL,
-    email VARCHAR(50) UNIQUE NOT NULL,
-    phone VARCHAR(20) NOT NULL,
-    birthdate DATE NOT NULL,
-    address VARCHAR(100) NOT NULL
+CREATE TABLE IF NOT EXISTS user (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    guid VARCHAR(36) NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    phone VARCHAR(20),
+    birthdate DATE,
+    address VARCHAR(255)
 );
 
-CREATE TABLE author (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(50) NOT NULL,
-    birthdate DATE NOT NULL,
-    address VARCHAR(100) NOT NULL,
+CREATE TABLE IF NOT EXISTS author (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    guid VARCHAR(36) NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    birthdate DATE,
+    address VARCHAR(255),
     biography TEXT
 );
 
-CREATE TABLE book (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    title VARCHAR(100) NOT NULL,
+CREATE TABLE IF NOT EXISTS book (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    guid VARCHAR(36) NOT NULL,
+    title VARCHAR(255) NOT NULL,
     synopsis TEXT,
-    genre VARCHAR(50),
-    pages INT NOT NULL,
-    copies INT NOT NULL,
-    publication_date DATE NOT NULL,
-    publisher VARCHAR(50) NOT NULL,
+    genre VARCHAR(255),
+    pages INT,
+    copies INT,
+    publication_date DATE,
+    publisher VARCHAR(255),
     author_id INT NOT NULL,
     FOREIGN KEY (author_id) REFERENCES author (id)
 );
 
-CREATE TABLE loan (
-    id INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS loan (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    guid VARCHAR(36) NOT NULL,
     user_id INT NOT NULL,
     book_id INT NOT NULL,
-    loan_date DATE NOT NULL,
-    loan_end_date DATE NOT NULL,
+    loan_date DATE,
+    loan_end_date DATE,
     return_date DATE,
     FOREIGN KEY (user_id) REFERENCES user (id),
     FOREIGN KEY (book_id) REFERENCES book (id)

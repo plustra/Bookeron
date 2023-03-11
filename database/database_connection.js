@@ -1,6 +1,5 @@
 import dotenv from 'dotenv';
 import { createConnection } from 'mysql';
-import { promisify } from 'util';
 
 dotenv.config();
 
@@ -14,5 +13,4 @@ const database = createConnection({
 
 database.connect();
 
-export const querify = promisify(database.query).bind(database);
 export default database;
