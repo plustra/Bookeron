@@ -1,4 +1,4 @@
-import database from '../database/database_connection.js';
+import database from '../database';
 
 /**
  * Create a new user
@@ -26,11 +26,11 @@ function create(guid, name, email, phone, birthdate, address) {
 }
 
 /**
- * Get users by params
+ * Find users by params
  * @param {{}} params
  * @returns {Promise<user[]>} Finded users
  */
-function get(params) {
+function find(params) {
     const keys = Object.keys(params);
     const values = params ? Object.values(params) : undefined;
     const query = `SELECT * FROM user ${params ? `WHERE ${keys.map((key) => `${key} = ?`).join(' AND ')}` : ''}`;
@@ -78,7 +78,7 @@ function remove(guid) {
     const values = [guid];
     const query = 'DELETE FROM user WHERE guid = ?';
 
-    return new Promise((resolve, reject) => {
+    return new Promise((_, reject) => {
         database.query(query, values, (error) => {
             if (error) {
                 reject(error);
@@ -89,9 +89,7 @@ function remove(guid) {
 
 export default {
     create,
-    get,
+    find,
     update,
     remove,
 };
-
-create('Eissen Posso', 'eissenposso3@gmail.com', '3245818313', new Date('2004/10/06'), 'Rionegro');

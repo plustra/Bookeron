@@ -39,7 +39,7 @@ To run this server, you must have Node.js and MySQL installed on your local comp
     npm install
     ```
 
-3. Create the necessary database and tables by executing the SQL script located in `database/bookeron.sql`.
+3. Create the necessary database and tables by executing the SQL script located in `database/schema.sql`.
 
 4. Configure the environment variables in the `.env` file. Example:
 

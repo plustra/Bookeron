@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import express from 'express';
-import { readdirSync } from 'fs';
-import database from './database/database_connection.js';
+import fs from 'fs';
+import database from './database';
 
 dotenv.config();
 
@@ -14,7 +14,7 @@ app.on('close', () => {
 });
 
 // Load routers
-readdirSync('./routers').forEach(async (file) => {
+fs.readdirSync('./routers').forEach(async (file) => {
     const { default: router, path } = await import(`./routers/${file}`);
     app.use(path, router);
 });
