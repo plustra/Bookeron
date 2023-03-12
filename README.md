@@ -14,8 +14,6 @@ To run this server, you must have Node.js and MySQL installed on your local comp
 
 -   [Dotenv](https://github.com/motdotla/dotenv) A zero-dependency module that loads environment variables from a .env file into process.env.
 
--   [Http Status Codes](https://github.com/prettymuchbryce/http-status-codes) A collection of response status codes that can be used in HTTP responses.
-
 -   [ESlint](https://eslint.org/) A popular tool for identifying and reporting on patterns found in ECMAScript/JavaScript code.
 
 -   [Prettier](https://prettier.io/) An opinionated code formatter that can be used to automatically format code and enforce consistent style.
@@ -81,34 +79,34 @@ npm run lint
 ### Users
 
 -   `GET /users`: Get all registered users.
--   `GET /users/:id`: Get information about the user with the specified ID.
+-   `GET /users/:guid`: Get information about the user with the specified GUID.
 -   `POST /users`: Create a new user.
--   `PUT /users/:id`: Update the information of the user with the specified ID.
--   `DELETE /users/:id`: Delete the user with the specified ID.
+-   `PUT /users/:guid`: Update the information of the user with the specified GUID.
+-   `DELETE /users/:guid`: Delete the user with the specified GUID.
 
 ### Authors
 
 -   `GET /authors`: Get all registered authors.
--   `GET /authors/:id`: Get information about the author with the specified ID.
+-   `GET /authors/:guid`: Get information about the author with the specified GUID.
 -   `POST /authors`: Create a new author.
--   `PUT /authors/:id`: Update the information of the author with the specified ID.
--   `DELETE /authors/:id`: Delete the author with the specified ID.
+-   `PUT /authors/:guid`: Update the information of the author with the specified GUID.
+-   `DELETE /authors/:guid`: Delete the author with the specified GUID.
 
 ### Books
 
 -   `GET /books`: Get all registered books.
--   `GET /books/:id`: Get information about the book with the specified ID.
+-   `GET /books/:guid`: Get information about the book with the specified GUID.
 -   `POST /books`: Create a new book.
--   `PUT /books/:id`: Update the information of the book with the specified ID.
--   `DELETE /books/:id`: Delete the book with the specified ID.
+-   `PUT /books/:guid`: Update the information of the book with the specified GUID.
+-   `DELETE /books/:guid`: Delete the book with the specified GUID.
 
 ### Loans
 
 -   `GET /loans`: Get all registered loans.
--   `GET /loans/:id`: Get information about the loan with the specified ID.
+-   `GET /loans/:guid`: Get information about the loan with the specified GUID.
 -   `POST /loans`: Create a new loan.
--   `PUT /loans/:id`: Update the information of the loan with the specified ID.
--   `DELETE /loans/:id`: Delete the loan with the specified ID.
+-   `PUT /loans/:guid`: Update the information of the loan with the specified GUID.
+-   `DELETE /loans/:guid`: Delete the loan with the specified GUID.
 
 _Consult the source code for more details on the implementation of the routes._
 
