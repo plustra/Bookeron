@@ -3,7 +3,7 @@ import { createConnection } from 'mysql';
 
 dotenv.config();
 
-const database = createConnection({
+const dbconnection = createConnection({
     port: process.env.DB_PORT,
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -11,6 +11,6 @@ const database = createConnection({
     database: process.env.DB_DATABASE,
 });
 
-database.connect();
+dbconnection.connect();
 
-export default database;
+export default dbconnection;

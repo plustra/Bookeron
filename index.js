@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import express from 'express';
 import fs from 'fs';
-import database from './database';
+import dbconnection from './database/connection.js';
 
 dotenv.config();
 
@@ -10,7 +10,7 @@ app.use(express.json());
 
 // Close DB connection
 app.on('close', () => {
-    database.end();
+    dbconnection.end();
 });
 
 // Load routers

@@ -1,4 +1,4 @@
-import database from '../database';
+import dbconnection from '../database/connection.js';
 
 /**
  * Create a new user
@@ -15,7 +15,7 @@ function create(guid, name, email, phone, birthdate, address) {
     const query = 'INSERT INTO user (guid, name, email, phone, birthdate, address) VALUES (?, ?, ?, ?, ?, ?)';
 
     return new Promise((resolve, reject) => {
-        database.query(query, values, (error, rows) => {
+        dbconnection.query(query, values, (error, rows) => {
             if (error) {
                 reject(error);
             }
@@ -27,7 +27,7 @@ function create(guid, name, email, phone, birthdate, address) {
 
 /**
  * Find users by params
- * @param {{}} params
+ * @param {{} | undefined} params
  * @returns {Promise<user[]>} Finded users
  */
 function find(params) {
@@ -36,7 +36,7 @@ function find(params) {
     const query = `SELECT * FROM user ${params ? `WHERE ${keys.map((key) => `${key} = ?`).join(' AND ')}` : ''}`;
 
     return new Promise((resolve, reject) => {
-        database.query(query, values, (error, rows) => {
+        dbconnection.query(query, values, (error, rows) => {
             if (error) {
                 reject(error);
             }
@@ -61,7 +61,7 @@ function update(guid, name, email, phone, birthdate, address) {
     const query = 'UPDATE user SET name = ?, email = ?, phone = ?, birthdate = ?, address = ? WHERE guid = ?';
 
     return new Promise((resolve, reject) => {
-        database.query(query, values, (error) => {
+        dbconnection.query(query, values, (error) => {
             if (error) {
                 reject(error);
             }
@@ -79,7 +79,7 @@ function remove(guid) {
     const query = 'DELETE FROM user WHERE guid = ?';
 
     return new Promise((_, reject) => {
-        database.query(query, values, (error) => {
+        dbconnection.query(query, values, (error) => {
             if (error) {
                 reject(error);
             }
