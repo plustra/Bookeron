@@ -78,7 +78,7 @@ function remove(guid) {
     const values = [guid];
     const query = 'DELETE FROM user WHERE guid = ?';
 
-    return new Promise((_, reject) => {
+    return new Promise((resolve, reject) => {
         dbconnection.query(query, values, (error) => {
             if (error) {
                 reject(error);
